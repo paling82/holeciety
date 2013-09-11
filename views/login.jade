@@ -1,0 +1,12 @@
+
+extends layout
+block content
+	div.container
+		form#login-form(method='post')
+			h2 Inloggen
+			input.form-control(type="text", placeholder="Gebruiker" name="user")
+			input.form-control(type="password", placeholder="Wachtwoord" name="password")
+			button.btn.btn-lg.btn-primary.btn-block(type=submit) Registeren
+
+block scripts
+	script(src="/js/login.js")

@@ -1,0 +1,31 @@
+!!! 5
+html
+	head
+		title HoleCiety
+		link(rel="stylesheet", href="/css/bootstrap.min.css")
+		link(rel="stylesheet", href="/css/holeciety.css")
+		script(src='//code.jquery.com/jquery-latest.min.js')
+		block scripts
+	body
+		div.navbar.navbar-inverse.navbar-fixed-top
+			div.container
+				div.navbar-header
+					a.navbar-brand(href="#") 
+						img(src="/images/holeciety.png")
+				div.navbar-collapse.collapse
+					ul.nav.navbar-nav
+						li.active
+							a(href="#") Home
+						li
+							a About
+						li
+							a Contact
+						form.navbar-form.navbar-right
+							div.form-group
+								input.form-control(type="text", placeholder="E-mail")
+							div.form-group
+								input.form-control(type="password", placeholder="Password")
+							button.btn.btn-success Sign in
+	block content
+
+	block scripts

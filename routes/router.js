@@ -25,7 +25,12 @@ module.exports = function(app){
 			} else {
 				req.session.user = output;
 				req.session.password = req.param('password');
-				res.render('wall', {user : req.session.user});
+				if(output.role=="admin"){
+						var admin = true;
+				} else {
+						var admin = false;
+				}
+				res.render('wall', {admin: admin});
 			}
 		});
 	});
@@ -38,7 +43,12 @@ module.exports = function(app){
 				if(!output){
 					res.render('login', {error : 'Something went wrong with autologin.'});
 				} else {
-					res.render('wall', {user : req.session.user});
+					if(output.role=="admin"){
+						var admin = true;
+					} else {
+						var admin = false;
+					}
+					res.render('wall', {admin: admin});
 				}
 			});
 		}

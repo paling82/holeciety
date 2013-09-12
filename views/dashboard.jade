@@ -10,9 +10,9 @@ block content
 				a.btn.btn-success(href="/friends") Friends
 			div.row
 				a.btn.btn-success(href="/matches") matches
-			- if(user.role=="admin")
-			div.row
-				a.btn.btn-success(href="/adduser") Add User
+			if admin
+				div.row
+					a.btn.btn-success(href="/adduser") Add User
 		div.col-md-8
 			p hier komt de content voor het dashboard
 			block dashboardcontent

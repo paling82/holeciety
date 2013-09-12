@@ -25,7 +25,7 @@ module.exports = function(app){
 			} else {
 				req.session.user = output;
 				req.session.password = req.param('password');
-				res.render('wall');
+				res.render('wall', {user : req.session.user});
 			}
 		});
 	});
@@ -38,7 +38,7 @@ module.exports = function(app){
 				if(!output){
 					res.render('login', {error : 'Something went wrong with autologin.'});
 				} else {
-					res.render('wall');
+					res.render('wall', {user : req.session.user});
 				}
 			});
 		}

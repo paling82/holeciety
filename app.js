@@ -22,7 +22,7 @@ app.configure('development', function(){
 
 //configuratie DB
 var dbUrl = "holeciety";
-var collections = ["accounts", "scorecards", "courses", "matches"];
+var collections = ["accounts", "scorecard", "courses", "matches"];
 GLOBAL.mongojs = require("mongojs");
 GLOBAL.db = mongojs.connect(dbUrl, collections);
 GLOBAL.ObjectId = mongojs.ObjectId;

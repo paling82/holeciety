@@ -1,5 +1,6 @@
 var register = require('./register');
 var login = require('./login');
+var scorecard = require('./scorecard');
 
 module.exports = function(app){
 	
@@ -59,7 +60,19 @@ module.exports = function(app){
 	});
 
 	app.get('/scorecard', function (req, res){
-		res.render('scorecard');
+		if(req.session.user==undefined || req.session.password == undefined){
+			res.render('dashboard');
+		} else {
+			login.autoLogin(req.session.user, req.session.password, function (output){
+				if(!output){
+					res.render('login', {error : 'Something went wrong with autologin.'});
+				} else {
+					scorecard.findAll(req.session.user._id, function (output){
+						res.render('scorecard', {cards : output});
+					});
+				}
+			});
+		}
 	});
 
 	app.get('/matches', function (req, res){

@@ -1,5 +1,5 @@
 exports.autoLogin = function (user, pass, callback){
-	db.accounts.findOne({user: user}, function (err, output){
+	db.accounts.findOne({ _id: ObjectId(user._id)}, function (err, output){
 		if(output){
 			output.password == pass ? callback(output) : callback(null);
 		} else {
@@ -14,7 +14,7 @@ exports.manualLogin = function (user, pass, callback){
 			callback("user-not-found");
 		} else {
 			console.log('Looking in db for user '+ user);
-			validatePassword(pass, output.pass, function (err, res){
+			validatePassword(pass, output.password, function (err, res){
 				if(res){
 					callback(null, output);
 				} else  {

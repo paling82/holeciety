@@ -1,6 +1,5 @@
 //Included Nodejs Modules
 var express = require('express');
-var mongo = require('mongodb');
 
 //configurate app
 var app = express();
@@ -24,7 +23,9 @@ app.configure('development', function(){
 //configuratie DB
 var dbUrl = "holeciety";
 var collections = ["accounts", "scorecards", "courses", "matches"];
-GLOBAL.db = require("mongojs").connect(dbUrl, collections);
+GLOBAL.mongojs = require("mongojs");
+GLOBAL.db = mongojs.connect(dbUrl, collections);
+GLOBAL.ObjectId = mongojs.ObjectId;
 
 require('./routes/router')(app);
 

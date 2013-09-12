@@ -19,12 +19,13 @@ module.exports = function(app){
 	});
 
 	app.post('/dashboard', function (req, res){
-		login.manualLogin(req.param('user'), req.param('pass'), function (err, output){
+		login.manualLogin(req.param('user'), req.param('password'), function (err, output){
 			if(!output){
 				res.send(err, 400);
 			} else {
 				req.session.user = output;
-				res.send(output, 200);
+				req.session.password = req.param('password');
+				res.render('wall');
 			}
 		});
 	});
@@ -33,7 +34,7 @@ module.exports = function(app){
 		if(req.session.user==undefined || req.session.password == undefined){
 			res.render('login');
 		} else {
-			login.autologin(req.session.user, req.session.password, function (output){
+			login.autoLogin(req.session.user, req.session.password, function (output){
 				if(!output){
 					res.render('login', {error : 'Something went wrong with autologin.'});
 				} else {
